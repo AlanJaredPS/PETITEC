@@ -25,7 +25,7 @@ namespace PETITEC.Vistas
             {
                 DisplayAlert("Kilómetros ingresados", $"Has ingresado: {kilometros} km", "OK");
 
-                Navigation.PushAsync(new EdadMascota());
+                Navigation.PushAsync(new MedidasCorporales());
             }
             else
             {
