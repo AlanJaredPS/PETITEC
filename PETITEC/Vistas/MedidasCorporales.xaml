@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.MedidasCorporales"
+             NavigationPage.HasNavigationBar="False">
+    <Grid BackgroundColor="#79CDE0" Padding="20">
+        <StackLayout Spacing="20" VerticalOptions="Center">
+
+            <!-- Título principal -->
+            <Label Text="Medidas corporales de NINA"
+                   FontAttributes="Bold"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+
+            <!-- Tarjeta de Peso -->
+            <Frame BackgroundColor="#A7E4ED" CornerRadius="15" Padding="10">
+                <StackLayout>
+                    <Grid>
+                        <Label Text="Peso"
+                               FontSize="14"
+                               TextColor="White"
+                               VerticalOptions="Start"/>
+                        <Label Text="29 de sep"
+                               FontSize="14"
+                               TextColor="White"
+                               HorizontalOptions="End"
+                               VerticalOptions="Start"/>
+                    </Grid>
+                    <Label Text="50kg"
+                           FontAttributes="Bold"
+                           FontSize="40"
+                           TextColor="White"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Tarjeta de Raza -->
+            <Frame BackgroundColor="#A7E4ED" CornerRadius="15" Padding="10">
+                <StackLayout>
+                    <Grid>
+                        <Label Text="Raza"
+                               FontSize="14"
+                               TextColor="White"
+                               VerticalOptions="Start"/>
+                        <Label Text="29 de sep"
+                               FontSize="14"
+                               TextColor="White"
+                               HorizontalOptions="End"
+                               VerticalOptions="Start"/>
+                    </Grid>
+                    <Label Text="Pastor belga"
+                           FontAttributes="Bold"
+                           FontSize="30"
+                           TextColor="White"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Tarjeta de Tamaño -->
+            <Frame BackgroundColor="#A7E4ED" CornerRadius="15" Padding="10">
+                <StackLayout>
+                    <Grid>
+                        <Label Text="Tamaño"
+                               FontSize="14"
+                               TextColor="White"
+                               VerticalOptions="Start"/>
+                        <Label Text="29 de sep"
+                               FontSize="14"
+                               TextColor="White"
+                               HorizontalOptions="End"
+                               VerticalOptions="Start"/>
+                    </Grid>
+                    <Label Text="Grande"
+                           FontAttributes="Bold"
+                           FontSize="40"
+                           TextColor="White"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Botón Agregado -->
+            <Button Text="Guardar cambios"
+                    CornerRadius="15"
+                    FontSize="18"
+                    BackgroundColor="#D9FFDA18"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    Clicked="BotonProto_Clicked"
+                    x:Name="BotonProto"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
+

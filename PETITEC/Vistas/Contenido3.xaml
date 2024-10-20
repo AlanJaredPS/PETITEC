@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.Contenido3"
+             NavigationPage.HasNavigationBar="False">
+    <Grid BackgroundColor="#79CDE0">
+        <StackLayout VerticalOptions="Center"
+                 Margin="20"
+                 Spacing="0">
+            <Label Text="¡Un calendario útil!"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="StartAndExpand"
+               FontSize="30"
+               LineBreakMode="WordWrap"
+               Margin="15,200,0,0"/>
+            <Label Text="Utiliza nuestro calendario para registrar&#10;los dias que tu perro cumplio el reto&#10;de los pasos dados"
+               FontSize="20"
+               TextColor="White"
+               Margin="15,10,0,0"
+               HorizontalOptions="StartAndExpand"
+               LineBreakMode="WordWrap"
+               TextType="Text"/>
+            <Button Text="  Continuar   >"
+                CornerRadius="30"
+                FontSize="30"
+                FontAttributes="Bold"
+                Margin="30,100,30,0"
+                BackgroundColor="#D9FFDA18"
+                Clicked="Btn1_Clicked"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

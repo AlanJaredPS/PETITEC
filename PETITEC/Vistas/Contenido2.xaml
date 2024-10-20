@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.Contenido2"
+             NavigationPage.HasNavigationBar="False">
+    <Grid BackgroundColor="#79CDE0">
+        <StackLayout VerticalOptions="Center"
+                     Margin="20"
+                     Spacing="0">
+            <Label Text="Dile adiós a no saber cuantos pasos dio tu perro"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   FontSize="30"
+                   LineBreakMode="WordWrap"
+                   Margin="15,200,0,0"/>
+            <Label Text="Utiliza Petitec a lo largo del día&#10;para mantener en forma a tu perro&#10;"
+                   FontSize="20"
+                   TextColor="White"
+                   Margin="15,10,0,0"
+                   HorizontalOptions="StartAndExpand"
+                   LineBreakMode="WordWrap"
+                   TextType="Text"/>
+            <Button Text="  Continuar   >"
+                    CornerRadius="30"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    Margin="30,100,30,0"
+                    BackgroundColor="#D9FFDA18"
+                    Clicked="Button_Clicked_1"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

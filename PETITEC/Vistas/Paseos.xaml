@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.Paseos"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid BackgroundColor="#79CDE0">
+        <StackLayout VerticalOptions="Center"
+                 Margin="0"
+                 Spacing="0">
+
+            <!-- Título de la pregunta -->
+            <Label Text="¿Sacas a pasear a tu"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"
+               FontSize="30"
+               LineBreakMode="WordWrap"
+               Margin="0"/>
+            
+            <Label Text="perro?"
+            FontAttributes="Bold"
+            TextColor="White"
+            HorizontalOptions="Center"
+            FontSize="30"
+            LineBreakMode="WordWrap"
+            Margin="0"/>
+
+            <!-- Botón de opción Sí -->
+            <Button Text="Sí" 
+                Clicked="BtnSi_Clicked" 
+                x:Name="btnSi"
+                CornerRadius="30"
+                FontSize="30"
+                TextTransform="None"
+                BorderColor="#FFDA18"
+                BorderWidth="3"
+                BackgroundColor="#00FFFFFF"
+                Margin="50,130,50,0"/>
+
+            <!-- Botón de opción No -->
+            <Button Text="No" 
+                Clicked="BtnNo_Clicked"
+                x:Name="btnNo"
+                CornerRadius="30"
+                FontSize="30"
+                TextTransform="None"
+                BorderColor="#FFDA18"
+                BorderWidth="3"
+                BackgroundColor="#00FFFFFF"
+                Margin="50"/>
+
+            <!-- Botón Continuar, inicialmente oculto -->
+            <Button Text="  Continuar   >"
+                CornerRadius="30"
+                FontSize="30"
+                FontAttributes="Bold"
+                Margin="30,100,30,0"
+                BackgroundColor="#D9FFDA18"
+                Clicked="Btn_Continuar_Clicked"
+                IsVisible="false"
+                x:Name="btnContinuar"/>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.Menuprincipal"
+             NavigationPage.HasNavigationBar="False">
+    <Grid BackgroundColor="#79CDE0">
+        <!-- Definición de filas para organizar el contenido -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Texto de bienvenida -->
+        <StackLayout VerticalOptions="Center" 
+                     Grid.Row="0"
+                     Margin="20, 50, 20, 0" 
+                     Spacing="0" 
+                     HorizontalOptions="Center">
+            <Label Text="¡Te damos la bienvenida!"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" 
+                   FontSize="30"/>
+
+            <!-- Imagen de PETITEC -->
+            <Image Source="lpet.jpg" 
+                   HeightRequest="100"
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <!-- Imagen central y etiqueta de seguridad -->
+        <StackLayout Grid.Row="1" 
+                     HorizontalOptions="CenterAndExpand" 
+                     VerticalOptions="Center">
+            <!-- Etiqueta y pequeña imagen (horizontal) -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Seguridad a 4 patas" 
+                       FontSize="20"
+                       TextColor="White"
+                       Margin="0,20,0,0"/>
+                <Image Source="patitapetitec.png" 
+                       HeightRequest="20" 
+                       WidthRequest="30" 
+                       Margin="5,20,0,0"/>
+            </StackLayout>
+
+            <!-- Imagen grande de la portada -->
+            <Image Source="PetitecPortada.png" 
+                   HeightRequest="400" 
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <!-- Botón de continuar en la parte inferior -->
+        <Button Grid.Row="2"
+                Text="Continuar   >"
+                CornerRadius="30"
+                FontSize="30"
+                FontAttributes="Bold"
+                Margin="30,50,30,30"
+                BackgroundColor="#D9FFDA18"
+                Clicked="btnIniciar_Clicked"
+                VerticalOptions="End"/>
+    </Grid>
+</ContentPage>
+

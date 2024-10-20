@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.PesodelaRaza"
+             NavigationPage.HasNavigationBar="False">
+    
+    <Grid BackgroundColor="#79CDE0">
+        <StackLayout VerticalOptions="Center"
+                 Margin="0,0,0,0"
+                 Spacing="0">
+            <!-- Título principal -->
+            <Label Text="¿Cual es el peso"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"
+               FontSize="30"
+               LineBreakMode="WordWrap"
+               Margin="0"/>
+            <Label Text="aproximado de tu mascota?"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"
+               FontSize="30"
+               LineBreakMode="WordWrap"
+               Margin="0,0,0,10"/>
+
+            <!-- Campo de entrada para el peso -->
+            <Entry Keyboard="Numeric" 
+               x:Name="pesoEntry"
+               Margin="50,70,60,0"
+               Placeholder="Peso aproximado (kg)"
+               FontAttributes="Bold"
+               FontSize="25"
+               TextColor="White"
+               PlaceholderColor="White"/>
+
+                <!-- Botón para continuar -->
+                <Button Text="  Continuar   >"
+                CornerRadius="30"
+                FontSize="30"
+                FontAttributes="Bold"
+                Margin="30,200,30,30"
+                BackgroundColor="#D9FFDA18"
+                Clicked="Btn_Peso"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

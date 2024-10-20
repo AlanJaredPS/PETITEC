@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.Contenido4"
+             NavigationPage.HasNavigationBar="False">
+    <Grid BackgroundColor="#79CDE0">
+        <StackLayout VerticalOptions="Center"
+             Margin="30"
+             Spacing="100">
+            <Label Text="Eres:"
+           FontAttributes="Bold"
+           TextColor="White"
+           HorizontalOptions="Center"
+           FontSize="30"
+           LineBreakMode="WordWrap"
+           Margin="10"/>
+            <Button Text="Dueño de un perro" 
+                    Clicked="BtnDueñoPerro_Clicked" 
+                    x:Name="btnDueñoPerro"
+                    CornerRadius="30"
+                    FontSize="30"
+                    TextTransform="None"
+                    BorderColor="#FFDA18"
+                    BorderWidth="3"
+                    BackgroundColor="#00FFFFFF"/>
+            <Button Text="Dueño de un gato" 
+                    Clicked="BtnDueñoGato_Clicked"
+                    x:Name="btnDueñoGato"
+                    CornerRadius="30"
+                    FontSize="30"
+                    TextTransform="None"
+                    BorderColor="#FFDA18"
+                    BorderWidth="3"
+                    BackgroundColor="#00FFFFFF"/>
+            <Button Text="  Continuar   >"
+            CornerRadius="30"
+            FontSize="30"
+            FontAttributes="Bold"
+            Margin="30,100,30,0"
+            BackgroundColor="#D9FFDA18"
+            Clicked="Btn_Continuar_Clicked"
+            IsVisible="false"
+            x:Name="btnContinuar"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

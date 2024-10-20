@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.Explicacion"
+             NavigationPage.HasNavigationBar="False">
+    <Grid BackgroundColor="#79CDE0">
+        <StackLayout VerticalOptions="Center"
+                     Margin="20"
+                     Spacing="0">
+            <Label Text="Un control de cuidado &#10;para tu perro"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="StartAndExpand"
+                   FontSize="30"
+                   LineBreakMode="WordWrap"
+                   Margin="15,200,0,0"/>
+            <Label Text="Nuestros programas están &#10;diseñados por expertos para ti y tu amigo de cuatro patas"
+                   FontSize="20"
+                   TextColor="White"
+                   Margin="15,10,0,0"
+                   HorizontalOptions="Center"
+                   LineBreakMode="WordWrap"
+                   TextType="Text"/>
+            <Button Text="  Continuar   >"
+                    CornerRadius="30"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    Margin="30,100,30,0"
+                    BackgroundColor="#D9FFDA18"
+                    Clicked="Button_Clicked"/>
+        </StackLayout>
+        </Grid>
+</ContentPage>

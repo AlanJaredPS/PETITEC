@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.Tamaño"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid BackgroundColor="#79CDE0" Padding="20">
+        <StackLayout Spacing="20" VerticalOptions="Center">
+
+            <!-- Título de la opción -->
+            <Label Text="Medida"
+                   FontAttributes="Bold"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+
+            <!-- Botón para desplegar el menú -->
+            <Button Text="Seleccionar tamaño"
+                    FontSize="20"
+                    TextColor="White"
+                    BackgroundColor="#FFD700"
+                    Clicked="ToggleMenuVisibility"
+                    HorizontalOptions="FillAndExpand"/>
+
+            <!-- Menú desplegable personalizado -->
+            <Frame x:Name="TamañoMenu"
+                   IsVisible="false"
+                   Padding="0"
+                   BackgroundColor="#FFD700"
+                   BorderColor="Black">
+                <StackLayout>
+                    <Button Text="Mini" 
+                            FontSize="20" 
+                            TextColor="White" 
+                            BackgroundColor="#FFD700" 
+                            Clicked="OnTamañoSeleccionado"/>
+                    <Button Text="Chico" 
+                            FontSize="20" 
+                            TextColor="White" 
+                            BackgroundColor="#FFD700" 
+                            Clicked="OnTamañoSeleccionado"/>
+                    <Button Text="Mediano" 
+                            FontSize="20" 
+                            TextColor="White" 
+                            BackgroundColor="#FFD700" 
+                            Clicked="OnTamañoSeleccionado"/>
+                    <Button Text="Grande" 
+                            FontSize="20" 
+                            TextColor="White" 
+                            BackgroundColor="#FFD700" 
+                            Clicked="OnTamañoSeleccionado"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Botón Continuar (deshabilitado hasta que se seleccione un tamaño) -->
+            <Button Text="Continuar"
+                    CornerRadius="15"
+                    FontSize="24"
+                    BackgroundColor="#D9FFDA18"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    IsEnabled="false"
+                    Clicked="Btn_Continuar_Clicked"
+                    x:Name="btnContinuar"/>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

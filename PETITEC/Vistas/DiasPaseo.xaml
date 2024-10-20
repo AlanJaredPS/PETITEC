@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.DiasPaseo"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid BackgroundColor="#79CDE0">
+        <StackLayout VerticalOptions="Center"
+                 Margin="0"
+                 Spacing="0">
+
+            <!-- Título de la pregunta -->
+            <Label Text="¿Cuántos días a la"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"
+               FontSize="30"
+               LineBreakMode="WordWrap"
+               Margin="0"/>
+
+            <Label Text="semana?"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"
+               FontSize="30"
+               LineBreakMode="WordWrap"
+               Margin="0"/>
+
+            <!-- Botón de opción Diario -->
+            <Button Text="Diario" 
+                Clicked="BtnDiario_Clicked" 
+                x:Name="btnDiario"
+                CornerRadius="30"
+                FontSize="30"
+                TextTransform="None"
+                BorderColor="#FFDA18"
+                BorderWidth="3"
+                BackgroundColor="#00FFFFFF"
+                Margin="30,130,30,30"/>
+
+            <!-- Botón de opción Cada 3er día -->
+            <Button Text="Cada 3er día" 
+                Clicked="BtnCada3erDia_Clicked"
+                x:Name="btnCada3erDia"
+                CornerRadius="30"
+                FontSize="30"
+                TextTransform="None"
+                BorderColor="#FFDA18"
+                BorderWidth="3"
+                BackgroundColor="#00FFFFFF"
+                Margin="30"/>
+
+            <!-- Botón de opción 1 vez por semana -->
+            <Button Text="1 vez por semana" 
+                Clicked="Btn1vezPorSemana_Clicked"
+                x:Name="btn1vezPorSemana"
+                CornerRadius="30"
+                FontSize="30"
+                TextTransform="None"
+                BorderColor="#FFDA18"
+                BorderWidth="3"
+                BackgroundColor="#00FFFFFF"
+                Margin="30"/>
+
+            <!-- Botón Continuar, inicialmente oculto -->
+            <Button Text="  Continuar   >"
+                CornerRadius="30"
+                FontSize="30"
+                FontAttributes="Bold"
+                Margin="30,100,30,0"
+                BackgroundColor="#D9FFDA18"
+                Clicked="Btn_Continuar_Clicked"
+                IsVisible="false"
+                x:Name="btnContinuar"/>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

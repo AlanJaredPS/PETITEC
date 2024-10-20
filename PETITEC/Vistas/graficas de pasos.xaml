@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="PETITEC.Vistas.graficas_de_pasos"
+             NavigationPage.HasNavigationBar="False">
+    <Grid BackgroundColor="#79CDE0" Padding="20">
+        <StackLayout Spacing="20">
+
+            <!-- Título de Resumen -->
+            <Label Text="Resumen"
+                   FontAttributes="Bold"
+                   FontSize="24"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+
+            <!-- Tarjeta de Círculo de Actividad -->
+            <Frame BackgroundColor="#A7E4ED" CornerRadius="15" Padding="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Título y fecha -->
+                    <Grid Grid.Row="0">
+                        <Label Text="Círculo de actividad"
+                               FontSize="14"
+                               TextColor="White"
+                               HorizontalOptions="Start"/>
+                        <Label Text="29 de sep"
+                               FontSize="14"
+                               TextColor="White"
+                               HorizontalOptions="End"/>
+                    </Grid>
+
+                    <!-- Círculo y datos de actividad -->
+                    <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                        <!-- Gráfico dinámico de círculo -->
+                        <microcharts:ChartView x:Name="ActivityCircleChart"
+                                               HeightRequest="80" 
+                                               WidthRequest="80" />
+                        <StackLayout>
+                            <Label Text="Moverse"
+                                   FontAttributes="Bold"
+                                   FontSize="24"
+                                   TextColor="White"/>
+                            <Label Text="2/360 KCAL"
+                                   FontSize="16"
+                                   TextColor="White"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- Tarjeta de Conteo de Pasos -->
+            <Frame BackgroundColor="#A7E4ED" CornerRadius="15" Padding="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Título -->
+                    <Label Text="Conteo de pasos"
+                           FontSize="14"
+                           TextColor="White"
+                           Grid.Row="0"
+                           HorizontalOptions="Start"/>
+
+                    <!-- Gráfico dinámico de pasos -->
+                    <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                        <microcharts:ChartView x:Name="StepCountChart"
+                                               HeightRequest="80" 
+                                               WidthRequest="80" />
+                        <StackLayout>
+                            <Label Text="Hoy"
+                                   FontAttributes="Bold"
+                                   FontSize="24"
+                                   TextColor="White"/>
+                            <Label Text="138"
+                                   FontSize="16"
+                                   TextColor="White"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- Tarjeta de Distancia de Pasos -->
+            <Frame BackgroundColor="#A7E4ED" CornerRadius="15" Padding="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Título -->
+                    <Label Text="Distancia de pasos"
+                           FontSize="14"
+                           TextColor="White"
+                           Grid.Row="0"
+                           HorizontalOptions="Start"/>
+
+                    <!-- Gráfico dinámico de distancia -->
+                    <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                        <microcharts:ChartView x:Name="StepDistanceChart"
+                                               HeightRequest="80" 
+                                               WidthRequest="80" />
+                        <StackLayout>
+                            <Label Text="Hoy"
+                                   FontAttributes="Bold"
+                                   FontSize="24"
+                                   TextColor="White"/>
+                            <Label Text="0.10 KM"
+                                   FontSize="16"
+                                   TextColor="White"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>
