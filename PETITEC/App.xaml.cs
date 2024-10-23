@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PETITEC.Vistas;
+using PETITEC.Models;
 
 namespace PETITEC
 {
@@ -13,6 +14,10 @@ namespace PETITEC
 
             MainPage = new NavigationPage(new Menuprincipal());
             App.Current.UserAppTheme = OSAppTheme.Light;
+
+            //Aqui colocaremos el comando a la base de datos
+
+            new SQlite();
         }
 
         protected override void OnStart()

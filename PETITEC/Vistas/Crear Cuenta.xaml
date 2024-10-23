@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PETITEC.Vistas.Crear_Cuenta"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid BackgroundColor="#79CDE0">
+        <!-- Definición de filas para organizar el contenido -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Contenido del formulario de registro -->
+        <StackLayout VerticalOptions="Center" 
+                     HorizontalOptions="FillAndExpand" 
+                     Padding="30">
+
+            <!-- Título -->
+            <Label Text="Crear Cuenta"
+                   FontAttributes="Bold"
+                   FontSize="35"
+                   TextColor="White"
+                   HorizontalOptions="Center"/>
+
+            <!-- Campo de entrada para el nombre -->
+            <Entry Placeholder="Nombre"
+                   FontSize="20"
+                   x:Name="entryNombre"
+                   Margin="0,20,0,10"
+                   TextColor="White"
+                   PlaceholderColor="White"/>
+
+            <!-- Campo de entrada para el correo electrónico -->
+            <Entry Placeholder="Correo electrónico"
+                   Keyboard="Email"
+                   FontSize="20"
+                   x:Name="entryCorreo"
+                   Margin="0,10,0,10"
+                   TextColor="White"
+                   PlaceholderColor="White"/>
+
+            <!-- Campo de entrada para la contraseña -->
+            <Entry Placeholder="Contraseña"
+                   IsPassword="True"
+                   FontSize="20"
+                   x:Name="entryPassword"
+                   Margin="0,10,0,30"
+                   TextColor="White"
+                   PlaceholderColor="White"/>
+
+            <!-- Botón de Crear Cuenta -->
+            <Button Text="Crear Cuenta"
+                    FontSize="25"
+                    FontAttributes="Bold"
+                    CornerRadius="30"
+                    BackgroundColor="#D9FFDA18"
+                    Clicked="BtnCrearCuenta_Clicked"/>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
