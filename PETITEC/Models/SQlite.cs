@@ -24,7 +24,38 @@ namespace PETITEC.Models
             database.CreateTable<Actividad>(); // Tabla Actividad
         }
 
-        // Métodos para guardar y obtener datos de Mascota
+        public static int SaveUsuario(Usuario usuario)
+        {
+            lock (locker)
+            {
+                if (usuario.Id != 0)
+                {
+                    database.Update(usuario);
+                    return usuario.Id;
+                }
+                else
+                {
+                    return database.Insert(usuario);
+                }
+            }
+        }
+
+        public static Usuario GetUsuarioPorCorreoYContraseña(string correo, string contraseña)
+        {
+            lock (locker)
+            {
+                // Buscar un usuario con el correo y contraseña proporcionados
+                return database.Table<Usuario>().FirstOrDefault(x => x.Correo == correo && x.Contraseña == contraseña);
+            }
+        }
+
+        public static Mascota GetUlitmaMascota() 
+        {
+            lock(locker) 
+            {
+                return database.Table<Mascota>().OrderByDescending(x => x.Id).FirstOrDefault();
+            }
+        }
 
         public static int DatosMascota(Mascota mascota) 
         {
@@ -42,11 +73,27 @@ namespace PETITEC.Models
             }
         }
 
+        public static Usuario GetUsuario(int id)
+        {
+            lock (locker)
+            {
+                return database.Table<Usuario>().FirstOrDefault(x => x.Id == id);
+            }
+        }
+
         public static Mascota ObtenerMascota(int id)
         {
             lock (locker)
             {
                 return database.Table<Mascota>().FirstOrDefault(x => x.Id == id);
+            }
+        }
+
+        public static Usuario GetUsuarioPorCorreo(string correo)
+        {
+            lock (locker)
+            {
+                return database.Table<Usuario>().FirstOrDefault(x => x.Correo == correo);
             }
         }
 

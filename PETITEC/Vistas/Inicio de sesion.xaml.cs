@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PETITEC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,12 +24,23 @@ namespace PETITEC.Vistas
             string emailUsuario = entryEmailUsuario.Text;
             string password = entryPassword.Text;
 
-            // Lógica para manejar el inicio de sesión (aquí podrías agregar la autenticación)
             if (!string.IsNullOrEmpty(emailUsuario) && !string.IsNullOrEmpty(password))
             {
-                // Simular autenticación o redirigir a otra página
-                DisplayAlert("Inicio de sesión", "Sesión iniciada con éxito", "OK");
-                Navigation.PushAsync(new Contenido2()); // Redirige al menú principal o página correspondiente
+                var UsuarioExistente = SQlite.GetUsuarioPorCorreoYContraseña(emailUsuario, password);
+                if (UsuarioExistente != null)
+                {
+
+                    SesionActual.UsuarioLogeado = UsuarioExistente;
+
+                    //si el usuario ya existe, se hace la autenticación exitosa
+                    DisplayAlert("Inicio de sesión", $"Bienvenido, {UsuarioExistente.Nombre}", "OK");
+                    Navigation.PushAsync(new Contenido2());
+                }
+                else 
+                {
+                    // Si el usuario no existe o la contraseña es incorrecta
+                    DisplayAlert("Error", "Correo o contraseña incorrectos", "OK");
+                }
             }
             else
             {

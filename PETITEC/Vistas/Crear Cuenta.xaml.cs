@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PETITEC.Models;
 
 namespace PETITEC.Vistas
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Crear_Cuenta : ContentPage
-	{
-		public Crear_Cuenta ()
-		{
-			InitializeComponent ();
-		}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Crear_Cuenta : ContentPage
+    {
+        public Crear_Cuenta()
+        {
+            InitializeComponent();
+        }
         private void BtnCrearCuenta_Clicked(object sender, EventArgs e)
         {
             // Obtener datos ingresados
@@ -26,9 +27,27 @@ namespace PETITEC.Vistas
             // Lógica de creación de cuenta
             if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(correo) && !string.IsNullOrEmpty(password))
             {
-                // Aquí puedes manejar el registro, como guardar los datos en una base de datos
-                DisplayAlert("Cuenta creada", "¡Cuenta creada con éxito!", "OK");
-                Navigation.PushAsync(new Menuprincipal()); // Redirige al menú principal u otra página
+                var usuarioExistente = SQlite.GetUsuarioPorCorreo(correo);
+                if (usuarioExistente == null)
+                {
+                    var nuevoUsuario = new Usuario
+                    {
+                        Nombre = nombre,
+                        Correo = correo,
+                        Contraseña = password,
+                        FechaRegistro = DateTime.Now
+                    };
+
+                    SQlite.SaveUsuario(nuevoUsuario);
+
+                    DisplayAlert("Cuenta creada", "¡Cuenta creada con éxito!", "OK");
+                    Navigation.PushAsync(new Menuprincipal());
+
+                }
+                else
+                {
+                    DisplayAlert("Error", "El correo ya está registrado. Por favor, use otro correo.", "OK");
+                }
             }
             else
             {

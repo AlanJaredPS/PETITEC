@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PETITEC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,18 +20,29 @@ namespace PETITEC.Vistas
 
 		private void Btn_Peso(object sender, EventArgs e)
 		{
-            string peso = pesoEntry.Text; // Obtener el peso ingresado
+            string pesoText = pesoEntry.Text;
 
-            if (!string.IsNullOrEmpty(peso))
+            if (!string.IsNullOrEmpty(pesoText))
             {
-                DisplayAlert("Peso ingresado", $"El peso aproximado de tu mascota es: {peso} kg", "OK");
+                double peso;
+                if (double.TryParse(pesoText, out peso))
+                {
+                    // Guardar el peso temporalmente en DatosMascota
+                    DatosMascota.PesoMascota = peso;
 
-                Navigation.PushAsync(new NombreMascota());
+                    DisplayAlert("Peso ingresado", $"El peso aproximado de tu mascota es: {peso} kg", "OK");
+
+                    Navigation.PushAsync(new NombreMascota());
+                }
+                else
+                {
+                    DisplayAlert("Error", "Por favor, ingrese un peso válido.", "OK");
+                }
             }
             else
             {
-                DisplayAlert("Error", "Por favor, ingrese el peso de su mascota", "OK");
+                DisplayAlert("Error", "Por favor, ingrese el peso de su mascota.", "OK");
             }
-		}
+        }
 	}
 }
