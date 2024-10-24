@@ -32,6 +32,10 @@ namespace PETITEC.Vistas
 
                     SesionActual.UsuarioLogeado = UsuarioExistente;
 
+                    // Guardar la sesión activa en las preferencias
+                    Xamarin.Essentials.Preferences.Set("IsLoggedIn", true);
+                    Xamarin.Essentials.Preferences.Set("UsuarioId", UsuarioExistente.Id);
+
                     //si el usuario ya existe, se hace la autenticación exitosa
                     DisplayAlert("Inicio de sesión", $"Bienvenido, {UsuarioExistente.Nombre}", "OK");
                     Navigation.PushAsync(new Contenido2());
