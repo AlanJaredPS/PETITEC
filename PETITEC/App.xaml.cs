@@ -24,8 +24,8 @@ namespace PETITEC
             {
                 if (hasCompletedRegistration)
                 {
-                    // Si ya ha completado el registro de su mascota, redirigir a la pantalla principal (por ejemplo, a GraficasPasos)
-                    MainPage = new NavigationPage(new graficas_de_pasos()); // O la pantalla principal que quieras mostrar
+                    // Si ya ha completado el registro de su mascota, redirigir a la pantalla de gráficas de pasos
+                    MainPage = new NavigationPage(new graficas_de_pasos());
                 }
                 else
                 {

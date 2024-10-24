@@ -13,14 +13,14 @@ namespace PETITEC.Vistas
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MedidasCorporales : ContentPage
 	{
-		public MedidasCorporales ()
-		{
-			InitializeComponent ();
-			CargarDatosMascota();
-		}
+        public MedidasCorporales()
+        {
+            InitializeComponent();
+            CargarDatosMascota();
+        }
 
-		private void CargarDatosMascota()
-		{
+        private void CargarDatosMascota()
+        {
             if (SesionActual.UsuarioLogeado != null)
             {
                 // Si ya tienes los datos guardados en la clase DatosMascota, puedes usarlos directamente
@@ -37,8 +37,13 @@ namespace PETITEC.Vistas
             }
         }
 
+        // Método para guardar la mascota en la base de datos y redirigir a las gráficas
         private void BotonProto_Clicked(object sender, EventArgs e)
         {
+            // Guardar los datos de la mascota en la base de datos
+            GuardarMascotaEnBaseDeDatos();
+
+            // Navegar a la página de las gráficas de pasos
             Navigation.PushAsync(new graficas_de_pasos());
         }
 
@@ -58,6 +63,9 @@ namespace PETITEC.Vistas
 
                 // Guardar en la base de datos
                 SQlite.DatosMascota(nuevaMascota);
+
+                // Actualizar el estado de registro de la mascota en las preferencias
+                Xamarin.Essentials.Preferences.Set("HasCompletedRegistration", true);
 
                 DisplayAlert("Éxito", "Los datos de la mascota se guardaron correctamente.", "OK");
             }
