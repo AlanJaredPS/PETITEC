@@ -13,10 +13,10 @@ namespace PETITEC.Vistas
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Inicio_de_sesion : ContentPage
 	{
-		public Inicio_de_sesion ()
-		{
-			InitializeComponent ();
-		}
+        public Inicio_de_sesion()
+        {
+            InitializeComponent();
+        }
 
         private void BtnIniciarSesion_Clicked(object sender, EventArgs e)
         {
@@ -29,18 +29,26 @@ namespace PETITEC.Vistas
                 var UsuarioExistente = SQlite.GetUsuarioPorCorreoYContraseña(emailUsuario, password);
                 if (UsuarioExistente != null)
                 {
-
-                    SesionActual.UsuarioLogeado = UsuarioExistente;
-
                     // Guardar la sesión activa en las preferencias
+                    SesionActual.UsuarioLogeado = UsuarioExistente;
                     Xamarin.Essentials.Preferences.Set("IsLoggedIn", true);
                     Xamarin.Essentials.Preferences.Set("UsuarioId", UsuarioExistente.Id);
 
-                    //si el usuario ya existe, se hace la autenticación exitosa
-                    DisplayAlert("Inicio de sesión", $"Bienvenido, {UsuarioExistente.Nombre}", "OK");
-                    Navigation.PushAsync(new Contenido2());
+                    // Verificar si el usuario ya completó el registro de la mascota
+                    bool hasCompletedRegistration = Xamarin.Essentials.Preferences.Get("HasCompletedRegistration", false);
+
+                    if (hasCompletedRegistration)
+                    {
+                        // Redirigir directamente a las gráficas de pasos
+                        Navigation.PushAsync(new graficas_de_pasos());
+                    }
+                    else
+                    {
+                        // Redirigir al flujo de registro de la mascota
+                        Navigation.PushAsync(new Contenido2());
+                    }
                 }
-                else 
+                else
                 {
                     // Si el usuario no existe o la contraseña es incorrecta
                     DisplayAlert("Error", "Correo o contraseña incorrectos", "OK");
