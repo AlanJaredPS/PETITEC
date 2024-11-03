@@ -12,7 +12,7 @@ namespace PETITEC.Models
         public int Id { get; set; }
         public int MascotaId { get; set; }
         public int Pasos {  get; set; }
-        public double Distancia { get; set; }
+        public float Distancia { get; set; }
         public DateTime Fecha { get; set; }
 
     }

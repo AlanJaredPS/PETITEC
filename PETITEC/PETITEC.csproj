@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Fitness.v1" Version="1.68.0.3232" />
     <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
     <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />

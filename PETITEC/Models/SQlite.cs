@@ -24,6 +24,7 @@ namespace PETITEC.Models
             database.CreateTable<Actividad>(); // Tabla Actividad
         }
 
+        // Guardar el usuario
         public static int SaveUsuario(Usuario usuario)
         {
             lock (locker)
@@ -40,24 +41,25 @@ namespace PETITEC.Models
             }
         }
 
+        // Obtener la mascota por UsuarioId
         public static Mascota ObtenerMascotaPorUsuarioId(int usuarioId)
         {
             lock (locker)
             {
-                // Obtener la mascota asociada al usuario desde la base de datos
                 return database.Table<Mascota>().FirstOrDefault(m => m.UsuarioId == usuarioId);
             }
         }
 
+        // Obtener usuario por correo y contraseña
         public static Usuario GetUsuarioPorCorreoYContraseña(string correo, string contraseña)
         {
             lock (locker)
             {
-                // Buscar un usuario con el correo y contraseña proporcionados
                 return database.Table<Usuario>().FirstOrDefault(x => x.Correo == correo && x.Contraseña == contraseña);
             }
         }
 
+        // Obtener la última mascota ingresada
         public static Mascota GetUltimaMascota()
         {
             lock (locker)
@@ -66,6 +68,7 @@ namespace PETITEC.Models
             }
         }
 
+        // Guardar o actualizar datos de la mascota
         public static int DatosMascota(Mascota mascota)
         {
             lock (locker)
@@ -82,12 +85,40 @@ namespace PETITEC.Models
             }
         }
 
-        public static int UpdateMascota(Mascota mascota)
+        // Método para sincronizar la actividad con Google Fit
+        public static void SincronizarActividadConGoogleFit(List<Actividad> actividades)
         {
             lock (locker)
             {
-                return database.Update(mascota);
+                foreach (var actividad in actividades)
+                {
+                    var actividadExistente = database.Table<Actividad>().FirstOrDefault(a => a.Fecha.Date == actividad.Fecha.Date && a.MascotaId == actividad.MascotaId);
+                    if (actividadExistente != null)
+                    {
+                        // Actualizar si ya existe
+                        actividadExistente.Pasos = actividad.Pasos;
+                        actividadExistente.Distancia = actividad.Distancia;
+                        database.Update(actividadExistente);
+                    }
+                    else
+                    {
+                        // Insertar si es nuevo
+                        database.Insert(actividad);
+                    }
+                }
             }
+        }
+
+        // Verificar si Google Fit está conectado
+        public static bool IsGoogleFitConnected()
+        {
+            return Xamarin.Essentials.Preferences.Get("IsGoogleFitConnected", false);
+        }
+
+        // Método para actualizar la conexión con Google Fit
+        public static void SetGoogleFitConnectionStatus(bool isConnected)
+        {
+            Xamarin.Essentials.Preferences.Set("IsGoogleFitConnected", isConnected);
         }
 
         public static Usuario GetUsuario(int id)

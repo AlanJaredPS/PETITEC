@@ -8,34 +8,57 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Microcharts;
 using SkiaSharp;
+using PETITEC.Models;
 
 namespace PETITEC.Vistas
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class graficas_de_pasos : ContentPage
-	{
+    public partial class graficas_de_pasos : ContentPage
+    {
+        private readonly IGoogleFitService googleFitService;
+
         public graficas_de_pasos()
         {
             InitializeComponent();
+            googleFitService = DependencyService.Get<IGoogleFitService>();
+
+            // Asegurar que Google Fit esté autenticado y luego cargar los gráficos
+            EnsureGoogleFitConnectionAndLoadCharts();
+        }
+
+        private async void EnsureGoogleFitConnectionAndLoadCharts()
+        {
+            // Verificar si Google Fit ya está inicializado
+            bool isAuthenticated = googleFitService != null && await googleFitService.IsAuthenticatedAsync();
+
+            if (!isAuthenticated)
+            {
+                // Si no está autenticado, autenticar y guardar el token
+                bool authSuccess = await googleFitService?.AuthenticateAndSaveToken();
+                if (!authSuccess)
+                {
+                    // Mostrar un mensaje si la autenticación falla
+                    await DisplayAlert("Error", "No se pudo conectar a Google Fit", "OK");
+                    return;
+                }
+            }
+
+            // Una vez autenticado, cargar los gráficos
             LoadCharts();
         }
 
         private void LoadCharts()
         {
-            // Supongamos que los datos provienen de la base de datos o alguna API
-            var actividadHoy = ObtenerActividadDiaria();
-            var actividadSemana = ObtenerActividadSemanal();
-            var actividadMes = ObtenerActividadMensual();
+            // Datos obtenidos de la base de datos para cada período
+            var pasosHoy = ObtenerPasos("Diario");
+            var pasosSemana = ObtenerPasos("Semanal");
+            var pasosMes = ObtenerPasos("Mensual");
 
-            var pasosHoy = ObtenerPasosHoy();
-            var pasosSemana = ObtenerPasosSemana();
-            var pasosMes = ObtenerPasosMes();
+            var distanciaHoy = ObtenerDistancia("Diario");
+            var distanciaSemana = ObtenerDistancia("Semanal");
+            var distanciaMes = ObtenerDistancia("Mensual");
 
-            var distanciaHoy = ObtenerDistanciaHoy();
-            var distanciaSemana = ObtenerDistanciaSemana();
-            var distanciaMes = ObtenerDistanciaMes();
-
-            // Gráfico del conteo de pasos (día, semana, mes)
+            // Gráfico de pasos para día, semana, mes
             StepCountChartDia.Chart = new DonutChart
             {
                 Entries = new[]
@@ -58,7 +81,7 @@ namespace PETITEC.Vistas
             }
             };
 
-            // Gráfico de distancia de pasos (día, semana, mes)
+            // Gráfico de distancia de pasos para día, semana, mes
             StepDistanceChartDia.Chart = new BarChart
             {
                 Entries = new[]
@@ -82,50 +105,49 @@ namespace PETITEC.Vistas
             };
         }
 
-        // Simulando funciones para obtener datos de actividad diaria, semanal y mensual
-        private int ObtenerPasosHoy()
+        // Métodos para obtener los pasos y la distancia de la base de datos
+        private int ObtenerPasos(string periodo)
         {
-            return 138; // Simula pasos de hoy
+            int pasos = 0;
+            switch (periodo)
+            {
+                case "Diario":
+                    pasos = SQlite.GetActividadPorFecha(SesionActual.UsuarioLogeado.Id, DateTime.Now).Pasos;
+                    break;
+                case "Semanal":
+                    pasos = SQlite.GetHistorialActividad(SesionActual.UsuarioLogeado.Id)
+                        .Where(x => x.Fecha >= DateTime.Now.AddDays(-7))
+                        .Sum(x => x.Pasos);
+                    break;
+                case "Mensual":
+                    pasos = SQlite.GetHistorialActividad(SesionActual.UsuarioLogeado.Id)
+                        .Where(x => x.Fecha >= DateTime.Now.AddMonths(-1))
+                        .Sum(x => x.Pasos);
+                    break;
+            }
+            return pasos;
         }
 
-        private int ObtenerPasosSemana()
+        private float ObtenerDistancia(string periodo)
         {
-            return 5000; // Simula pasos de la semana
-        }
-
-        private int ObtenerPasosMes()
-        {
-            return 20000; // Simula pasos del mes
-        }
-
-        private float ObtenerDistanciaHoy()
-        {
-            return 0.10f; // Simula distancia de hoy
-        }
-
-        private float ObtenerDistanciaSemana()
-        {
-            return 3.5f; // Simula distancia de la semana
-        }
-
-        private float ObtenerDistanciaMes()
-        {
-            return 14.0f; // Simula distancia del mes
-        }
-
-        private (float KcalMovidas, float KcalRestantes) ObtenerActividadDiaria()
-        {
-            return (2f, 360f);  // Simulación de datos para calorías movidas y restantes
-        }
-
-        private (float KcalMovidas, float KcalRestantes) ObtenerActividadSemanal()
-        {
-            return (25f, 300f);  // Simulación de datos para la semana
-        }
-
-        private (float KcalMovidas, float KcalRestantes) ObtenerActividadMensual()
-        {
-            return (100f, 250f);  // Simulación de datos para el mes
+            float distancia = 0;
+            switch (periodo)
+            {
+                case "Diario":
+                    distancia = SQlite.GetActividadPorFecha(SesionActual.UsuarioLogeado.Id, DateTime.Now).Distancia;
+                    break;
+                case "Semanal":
+                    distancia = SQlite.GetHistorialActividad(SesionActual.UsuarioLogeado.Id)
+                        .Where(x => x.Fecha >= DateTime.Now.AddDays(-7))
+                        .Sum(x => x.Distancia);
+                    break;
+                case "Mensual":
+                    distancia = SQlite.GetHistorialActividad(SesionActual.UsuarioLogeado.Id)
+                        .Where(x => x.Fecha >= DateTime.Now.AddMonths(-1))
+                        .Sum(x => x.Distancia);
+                    break;
+            }
+            return distancia;
         }
     }
 }

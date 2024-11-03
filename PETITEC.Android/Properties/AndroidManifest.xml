@@ -3,4 +3,6 @@
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
 	<application android:label="PETITEC" android:theme="@style/MainTheme" android:icon="@mipmap/ic_launcher"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+	<uses-permission android:name="android.permission.INTERNET" />
 </manifest>
