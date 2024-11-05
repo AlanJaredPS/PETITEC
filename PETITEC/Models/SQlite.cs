@@ -40,6 +40,15 @@ namespace PETITEC.Models
             }
         }
 
+        public static Mascota ObtenerMascotaPorUsuarioId(int usuarioId)
+        {
+            lock (locker)
+            {
+                // Obtener la mascota asociada al usuario desde la base de datos
+                return database.Table<Mascota>().FirstOrDefault(m => m.UsuarioId == usuarioId);
+            }
+        }
+
         public static Usuario GetUsuarioPorCorreoYContraseña(string correo, string contraseña)
         {
             lock (locker)
@@ -49,15 +58,15 @@ namespace PETITEC.Models
             }
         }
 
-        public static Mascota GetUlitmaMascota() 
+        public static Mascota GetUltimaMascota()
         {
-            lock(locker) 
+            lock (locker)
             {
                 return database.Table<Mascota>().OrderByDescending(x => x.Id).FirstOrDefault();
             }
         }
 
-        public static int DatosMascota(Mascota mascota) 
+        public static int DatosMascota(Mascota mascota)
         {
             lock (locker)
             {
@@ -70,6 +79,14 @@ namespace PETITEC.Models
                 {
                     return database.Insert(mascota);
                 }
+            }
+        }
+
+        public static int UpdateMascota(Mascota mascota)
+        {
+            lock (locker)
+            {
+                return database.Update(mascota);
             }
         }
 
@@ -112,6 +129,7 @@ namespace PETITEC.Models
                 }
             }
         }
+
         public static Actividad GetActividadPorFecha(int mascotaId, DateTime fecha)
         {
             lock (locker)

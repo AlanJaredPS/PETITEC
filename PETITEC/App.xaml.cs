@@ -22,10 +22,27 @@ namespace PETITEC
             // Lógica para redirigir al usuario a la pantalla correcta según el estado de la sesión
             if (isLoggedIn)
             {
+                // Obtener el ID del usuario logueado de las preferencias
+                int usuarioId = Xamarin.Essentials.Preferences.Get("UsuarioId", -1);
+
+                // Recuperar el usuario logueado basado en su ID
+                var usuarioLogeado = SQlite.GetUsuario(usuarioId);
+                SesionActual.UsuarioLogeado = usuarioLogeado;
+
                 if (hasCompletedRegistration)
                 {
-                    // Si ya ha completado el registro de su mascota, redirigir a la pantalla de gráficas de pasos
-                    MainPage = new NavigationPage(new graficas_de_pasos());
+                    // Crear un CarouselPage con las páginas de Medidas Corporales y Graficas de Pasos
+                    var carouselPage = new CarouselPage
+                    {
+                        Children =
+                    {
+                        new graficas_de_pasos(), // Primera página (Gráficas de pasos)
+                        new MedidasCorporales()   // Segunda página (Medidas Corporales)
+                    }
+                    };
+
+                    // Establecer el CarouselPage como la página principal
+                    MainPage = carouselPage;
                 }
                 else
                 {
