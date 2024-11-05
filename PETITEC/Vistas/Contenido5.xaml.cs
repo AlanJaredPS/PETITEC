@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PETITEC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace PETITEC.Vistas
             }
             else
             {
+                DatosMascota.RazaMascota = razaText;
                 Navigation.PushAsync(new PesodelaRaza());
             }
         }

@@ -16,10 +16,18 @@ namespace PETITEC.Vistas
         {
             InitializeComponent();
         }
-
-        private void btnIniciar_Clicked(object sender, EventArgs e)
+        // Lógica para el botón de "Iniciar Sesión"
+        private void btnIniciarSesion_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Explicacion());
+            // Aquí navegas a la página de inicio de sesión
+            Navigation.PushAsync(new Inicio_de_sesion());
+        }
+
+        // Lógica para el botón de "Crear Cuenta"
+        private void btnCrearCuenta_Clicked(object sender, EventArgs e)
+        {
+            // Aquí navegas a la página de registro
+            Navigation.PushAsync(new Crear_Cuenta());
         }
     }
 }

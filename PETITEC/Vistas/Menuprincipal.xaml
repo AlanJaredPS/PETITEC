@@ -51,16 +51,29 @@
                    HorizontalOptions="Center"/>
         </StackLayout>
 
-        <!-- Botón de continuar en la parte inferior -->
-        <Button Grid.Row="2"
-                Text="Continuar   >"
-                CornerRadius="30"
-                FontSize="30"
-                FontAttributes="Bold"
-                Margin="30,50,30,30"
-                BackgroundColor="#D9FFDA18"
-                Clicked="btnIniciar_Clicked"
-                VerticalOptions="End"/>
+        <!-- Botones de Iniciar Sesión y Crear Cuenta en la parte inferior -->
+        <StackLayout Grid.Row="2"
+                     Orientation="Vertical"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="End"
+                     Margin="30,50,30,30">
+            <!-- Botón de Iniciar Sesión -->
+            <Button Text="Iniciar Sesión"
+                    CornerRadius="30"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    BackgroundColor="#D9FFDA18"
+                    Clicked="btnIniciarSesion_Clicked"/>
+
+            <!-- Botón de Crear Cuenta -->
+            <Button Text="Crear Cuenta"
+                    CornerRadius="30"
+                    FontSize="30"
+                    FontAttributes="Bold"
+                    BackgroundColor="#D9FFDA18"
+                    Margin="0,20,0,0"
+                    Clicked="btnCrearCuenta_Clicked"/>
+        </StackLayout>
     </Grid>
 </ContentPage>
 

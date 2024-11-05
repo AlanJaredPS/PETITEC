@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PETITEC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,7 @@ namespace PETITEC.Vistas
 
             if (entry.Text != textoFiltrado)
             {
-                entry.Text = textoFiltrado; // Actualizar el campo de texto con solo letras
+                entry.Text = textoFiltrado; 
             }
         }
 
@@ -38,6 +39,8 @@ namespace PETITEC.Vistas
 
             if (!string.IsNullOrEmpty(nombre)) // Verificar que el campo no esté vacío
             {
+                DatosMascota.NombreMascota = nombre;
+
                 DisplayAlert("Nombre ingresado", $"El nombre de tu mascota es: {nombre}", "OK");
 
                 Navigation.PushAsync(new Paseos());

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PETITEC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,16 @@ namespace PETITEC.Vistas
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Tamaño : ContentPage
 	{
-        private Button botonSeleccionado = null; // Para rastrear qué botón está seleccionado
+        private Button botonSeleccionado = null;
 
         public Tamaño ()
 		{
 			InitializeComponent ();
 		}
 
-        // Método para mostrar/ocultar el menú desplegable
         private void ToggleMenuVisibility(object sender, EventArgs e)
         {
-            TamañoMenu.IsVisible = !TamañoMenu.IsVisible; // Cambia la visibilidad del menú
+            TamañoMenu.IsVisible = !TamañoMenu.IsVisible; 
         }
 
         // Método cuando se selecciona una opción de tamaño
@@ -38,8 +38,8 @@ namespace PETITEC.Vistas
             }
 
             // Resaltar el botón seleccionado
-            button.BackgroundColor = Color.FromHex("#FFA500"); // Cambiar el fondo del botón seleccionado (naranja brillante)
-            button.TextColor = Color.Black; // Cambiar el texto del botón seleccionado a negro
+            button.BackgroundColor = Color.FromHex("#FFA500");
+            button.TextColor = Color.Black; 
 
             botonSeleccionado = button; // Guardar el botón seleccionado
 
@@ -50,10 +50,18 @@ namespace PETITEC.Vistas
         // Método para avanzar al siguiente contenido
         private void Btn_Continuar_Clicked(object sender, EventArgs e)
         {
-            // Lógica para continuar al siguiente contenido
-            DisplayAlert("Avanzando", "Tamaño seleccionado: " + botonSeleccionado.Text, "OK");
+            if (botonSeleccionado != null)
+            {
 
-            Navigation.PushAsync(new Contenido5());
+                // Guardar el tamaño seleccionado temporalmente en DatosMascota
+                DatosMascota.TamañoMascota = botonSeleccionado.Text;
+
+                // Mostrar confirmación
+                DisplayAlert("Avanzando", "Tamaño seleccionado: " + DatosMascota.TamañoMascota, "OK");
+
+                // Navegar a la siguiente página
+                Navigation.PushAsync(new Contenido5());
+            }
         }
     }
 }

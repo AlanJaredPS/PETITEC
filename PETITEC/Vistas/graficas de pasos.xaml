@@ -4,54 +4,16 @@
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="PETITEC.Vistas.graficas_de_pasos"
              NavigationPage.HasNavigationBar="False">
+
     <Grid BackgroundColor="#79CDE0" Padding="20">
         <StackLayout Spacing="20">
 
             <!-- Título de Resumen -->
             <Label Text="Resumen"
-                   FontAttributes="Bold"
-                   FontSize="24"
-                   TextColor="White"
-                   HorizontalOptions="Center"/>
-
-            <!-- Tarjeta de Círculo de Actividad -->
-            <Frame BackgroundColor="#A7E4ED" CornerRadius="15" Padding="15">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <!-- Título y fecha -->
-                    <Grid Grid.Row="0">
-                        <Label Text="Círculo de actividad"
-                               FontSize="14"
-                               TextColor="White"
-                               HorizontalOptions="Start"/>
-                        <Label Text="29 de sep"
-                               FontSize="14"
-                               TextColor="White"
-                               HorizontalOptions="End"/>
-                    </Grid>
-
-                    <!-- Círculo y datos de actividad -->
-                    <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
-                        <!-- Gráfico dinámico de círculo -->
-                        <microcharts:ChartView x:Name="ActivityCircleChart"
-                                               HeightRequest="80" 
-                                               WidthRequest="80" />
-                        <StackLayout>
-                            <Label Text="Moverse"
-                                   FontAttributes="Bold"
-                                   FontSize="24"
-                                   TextColor="White"/>
-                            <Label Text="2/360 KCAL"
-                                   FontSize="16"
-                                   TextColor="White"/>
-                        </StackLayout>
-                    </StackLayout>
-                </Grid>
-            </Frame>
+               FontAttributes="Bold"
+               FontSize="24"
+               TextColor="White"
+               HorizontalOptions="Center"/>
 
             <!-- Tarjeta de Conteo de Pasos -->
             <Frame BackgroundColor="#A7E4ED" CornerRadius="15" Padding="15">
@@ -63,25 +25,38 @@
 
                     <!-- Título -->
                     <Label Text="Conteo de pasos"
-                           FontSize="14"
-                           TextColor="White"
-                           Grid.Row="0"
-                           HorizontalOptions="Start"/>
+                       FontSize="14"
+                       TextColor="White"
+                       Grid.Row="0"
+                       HorizontalOptions="Start"/>
 
-                    <!-- Gráfico dinámico de pasos -->
-                    <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
-                        <microcharts:ChartView x:Name="StepCountChart"
+                    <!-- Gráficos para día, semana y mes -->
+                    <StackLayout Grid.Row="1" Orientation="Vertical" Spacing="10" VerticalOptions="Center">
+
+                        <!-- Pasos por día -->
+                        <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                            <Label Text="Hoy:" FontAttributes="Bold" FontSize="16" TextColor="White"/>
+                            <microcharts:ChartView x:Name="StepCountChartDia"
                                                HeightRequest="80" 
                                                WidthRequest="80" />
-                        <StackLayout>
-                            <Label Text="Hoy"
-                                   FontAttributes="Bold"
-                                   FontSize="24"
-                                   TextColor="White"/>
-                            <Label Text="138"
-                                   FontSize="16"
-                                   TextColor="White"/>
                         </StackLayout>
+
+                        <!-- Pasos por semana -->
+                        <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                            <Label Text="Esta semana:" FontAttributes="Bold" FontSize="16" TextColor="White"/>
+                            <microcharts:ChartView x:Name="StepCountChartSemana"
+                                               HeightRequest="80" 
+                                               WidthRequest="80" />
+                        </StackLayout>
+
+                        <!-- Pasos por mes -->
+                        <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                            <Label Text="Este mes:" FontAttributes="Bold" FontSize="16" TextColor="White"/>
+                            <microcharts:ChartView x:Name="StepCountChartMes"
+                                               HeightRequest="80" 
+                                               WidthRequest="80" />
+                        </StackLayout>
+
                     </StackLayout>
                 </Grid>
             </Frame>
@@ -96,29 +71,43 @@
 
                     <!-- Título -->
                     <Label Text="Distancia de pasos"
-                           FontSize="14"
-                           TextColor="White"
-                           Grid.Row="0"
-                           HorizontalOptions="Start"/>
+                       FontSize="14"
+                       TextColor="White"
+                       Grid.Row="0"
+                       HorizontalOptions="Start"/>
 
-                    <!-- Gráfico dinámico de distancia -->
-                    <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
-                        <microcharts:ChartView x:Name="StepDistanceChart"
+                    <!-- Gráficos para día, semana y mes -->
+                    <StackLayout Grid.Row="1" Orientation="Vertical" Spacing="10" VerticalOptions="Center">
+
+                        <!-- Distancia por día -->
+                        <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                            <Label Text="Hoy:" FontAttributes="Bold" FontSize="16" TextColor="White"/>
+                            <microcharts:ChartView x:Name="StepDistanceChartDia"
                                                HeightRequest="80" 
                                                WidthRequest="80" />
-                        <StackLayout>
-                            <Label Text="Hoy"
-                                   FontAttributes="Bold"
-                                   FontSize="24"
-                                   TextColor="White"/>
-                            <Label Text="0.10 KM"
-                                   FontSize="16"
-                                   TextColor="White"/>
                         </StackLayout>
+
+                        <!-- Distancia por semana -->
+                        <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                            <Label Text="Esta semana:" FontAttributes="Bold" FontSize="16" TextColor="White"/>
+                            <microcharts:ChartView x:Name="StepDistanceChartSemana"
+                                               HeightRequest="80" 
+                                               WidthRequest="80" />
+                        </StackLayout>
+
+                        <!-- Distancia por mes -->
+                        <StackLayout Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                            <Label Text="Este mes:" FontAttributes="Bold" FontSize="16" TextColor="White"/>
+                            <microcharts:ChartView x:Name="StepDistanceChartMes"
+                                               HeightRequest="80" 
+                                               WidthRequest="80" />
+                        </StackLayout>
+
                     </StackLayout>
                 </Grid>
             </Frame>
 
         </StackLayout>
     </Grid>
+
 </ContentPage>
